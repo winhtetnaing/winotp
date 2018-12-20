@@ -13,12 +13,11 @@
   "author": "win htet naing",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.17.2",   
-    "express": "^4.15.3",  
+     "body-parser": "^1.15.0",
+    "express": "3.x",
     "guid": "0.0.12",
     "mustache": "^2.2.1",
     "querystring": "^0.2.0",
-    "morgan": "^1.8.2",
     "request": "^2.69.0"
   },
   "engines": {
