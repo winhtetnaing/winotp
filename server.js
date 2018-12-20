@@ -67,7 +67,7 @@ app.post('/login_success', function(request, response){
 });
 
 app.get("*",function(req,res){ 
-    res.redirect('index.html');
+    res.sendFile('index.html');
 })
 
 //app.listen(process.env.PORT);
