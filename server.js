@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const Mustache  = require('mustache');
 const Request  = require('request');
 const Querystring  = require('querystring');
+var path = require("path");
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -17,7 +18,7 @@ const app_secret = '7a308769c4522b42b198338708401af4';
 const me_endpoint_base_url = 'https://graph.accountkit.com/{{ACCOUNT_KIT_API_VERSION}}/me';
 const token_exchange_base_url = 'https://graph.accountkit.com/{{ACCOUNT_KIT_API_VERSION}}/access_token'; 
 
-
+var srcpath  =path.join(__dirname,'/public') ;
 
 function loadLoginSuccess() {
   return fs.readFileSync('/login_success.html').toString();
@@ -66,8 +67,9 @@ app.post('/login_success', function(request, response){
   }
 });
 
+
 app.get("*",function(req,res){ 
-    res.sendFile('index.html');
+    res.sendFile(srcpath +'/index.html');
 })
 
 //app.listen(process.env.PORT);
