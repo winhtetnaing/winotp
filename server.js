@@ -1,3 +1,4 @@
+
 const fs = require('fs');
 const Guid = require('guid');
 const express = require('express');
@@ -5,26 +6,38 @@ const bodyParser = require("body-parser");
 const Mustache  = require('mustache');
 const Request  = require('request');
 const Querystring  = require('querystring');
-var path = require("path");
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
   
 var csrf_guid = Guid.raw();
-const account_kit_api_version = 'v1.0';
+const account_kit_api_version = 'v1.1';
 const app_id = '307807109951843';
 const app_secret = '7a308769c4522b42b198338708401af4';
-const me_endpoint_base_url = 'https://graph.accountkit.com/{{ACCOUNT_KIT_API_VERSION}}/me';
-const token_exchange_base_url = 'https://graph.accountkit.com/{{ACCOUNT_KIT_API_VERSION}}/access_token'; 
+const me_endpoint_base_url = 'https://graph.accountkit.com/v1.1/me';
+const token_exchange_base_url = 'https://graph.accountkit.com/v1.1/access_token'; 
 
-var srcpath  =path.join(__dirname,'/public') ;
 
-function loadLoginSuccess() {
-  return fs.readFileSync('/login_success.html').toString();
+function loadLogin() {
+  return fs.readFileSync('dist/login.html').toString();
 }
 
+app.get('/', function(request, response){
+  var view = {
+    appId: app_id,
+    csrf: csrf_guid,
+    version: account_kit_api_version,
+  };
 
+  var html = Mustache.to_html(loadLogin(), view);
+  response.send(html);
+});
+    
+
+function loadLoginSuccess() {
+  return fs.readFileSync('dist/login_success.html').toString();
+}
 
 app.post('/login_success', function(request, response){
 
@@ -66,14 +79,8 @@ app.post('/login_success', function(request, response){
     response.end("Something went wrong. :( ");
   }
 });
-
-
-app.get("*",function(req,res){ 
-    res.sendFile(srcpath +'/index.html');
-})
-
 //app.listen(process.env.PORT);
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
-console.log(" port : "+process.env.PORT);
+
