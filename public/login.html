@@ -1,6 +1,24 @@
 <head>
 
 <script src="https://sdk.accountkit.com/en_US/sdk.js"></script>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '307807109951843',
+      xfbml      : true,
+      version    : 'v3.2'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 </head>
 <body>
 
@@ -15,6 +33,12 @@
   <input id="csrf" type="hidden" name="csrf" />
   <input id="code" type="hidden" name="code" />
 </form>
+<div
+  class="fb-like"
+  data-share="true"
+  data-width="450"
+  data-show-faces="true">
+</div>
 <body>
 <script>
   function loginCallback(response) {
@@ -35,7 +59,7 @@
         state:"8945809509dkeu40394949", 
         version:"v1.1",
         fbAppEventsEnabled:true,
-        redirect:"/login"
+        redirect:"https://winotp.herokuapp.com/"
       }
     );
   };
