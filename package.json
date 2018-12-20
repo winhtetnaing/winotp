@@ -1,27 +1,19 @@
 {
   "name": "winotp",
   "version": "1.0.0",
-  "description": "winotp",
+  "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-     "start": "node server.js" 
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-   "keywords": [
-    "winotp"
-  ],
-  "author": "win htet naing",
+  "author": "",
   "license": "ISC",
   "dependencies": {
-     "body-parser": "^1.15.0",
+    "body-parser": "^1.15.0",
     "express": "3.x",
     "guid": "0.0.12",
     "mustache": "^2.2.1",
     "querystring": "^0.2.0",
     "request": "^2.69.0"
-  },
-  "engines": {
-    "node": "8.11.3",
-    "npm": "6.4.1"
   }
 }

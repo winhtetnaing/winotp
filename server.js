@@ -1,4 +1,3 @@
-
 const fs = require('fs');
 const Guid = require('guid');
 const express = require('express');
@@ -20,7 +19,7 @@ const token_exchange_base_url = 'https://graph.accountkit.com/v1.1/access_token'
 
 
 function loadLogin() {
-  return fs.readFileSync('dist/login.html').toString();
+  return fs.readFileSync('public/login.html').toString();
 }
 
 app.get('/', function(request, response){
@@ -79,8 +78,9 @@ app.post('/login_success', function(request, response){
     response.end("Something went wrong. :( ");
   }
 });
+
 //app.listen(process.env.PORT);
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
-
+console.log(" port : "+process.env.PORT);
